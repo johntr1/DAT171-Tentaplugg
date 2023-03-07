@@ -6,7 +6,8 @@ def read_users(file):
         read_file = file.read()
 
     li = read_file.split(':')
-    key = [x for x in ]
+    for i in li:
+        if i ==
     return li
 
 print(read_users('passwd.txt'))
