@@ -18,23 +18,25 @@ def read_users(file):
 
 
 def read_groups(file):
-    x = {}
+    x = defaultdict(list)
+    s = []
     with open(file, mode='r') as file:
         read_file = file.read()
 
     li = read_file.split('\n')
     li_split = [x.split(':') for x in li]
-    for i, element in enumerate(names):
+    for i, element in enumerate(li_split):
         names = element[3].split(',')
-        for j in enumerate(li_split):
-            return True
+        for e in names:
+            s.append([e, element[0]])
 
-
+    for k, v in s:
+        x[k].append(v)
 
     return x
 
-print(read_groups('group.txt'))
-print(defaultdict)
+groupname = read_groups('group.txt')
+print(groupname['dale'])
 
 
 
