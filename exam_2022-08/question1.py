@@ -1,6 +1,8 @@
 # Question 1
 # x[key] = value
 from collections import *
+from tabulate import tabulate
+
 
 def read_users(file):
     with open(file, mode='r') as file:
@@ -17,6 +19,7 @@ def read_users(file):
     return x
 
 
+# Lär att använda help funktionen!
 def read_groups(file):
     x = defaultdict(list)
     s = []
@@ -35,8 +38,55 @@ def read_groups(file):
 
     return x
 
-groupname = read_groups('group.txt')
-print(groupname['dale'])
+
+def read_groups2(file):
+    x = {}
+    with open(file, mode='r') as file:
+        read_file = file.read()
+        name_list = []
+
+    li = read_file.split('\n')
+    li_split = [x.split(':') for x in li]
+    for i, e in enumerate(li_split):
+        names = e[3].split(',')
+        for j in names:
+            name_list.append(j)
+
+    name_list = set(name_list)
+
+    for i in name_list:
+        value_list = []
+        for j in li_split:
+            if i in j[3].split(','):
+                value_list.append(j[0])
+        x[i] = value_list
+
+    return x
 
 
+names = read_users('passwd.txt')
+y = names.keys()
+# rint(y[0])
+groups = read_groups2('group.txt')
 
+
+def print_user_table(names, groups):
+    li = names.items()
+    li = sorted(li)
+    group = sorted(groups.items())
+    for i, e in enumerate(li):
+        x = str(groups[li[i][0]])
+        x = x.strip('[')
+        x = x.strip(']')
+        x = x.strip("'")
+        x = x.strip("'")
+
+        li[i] += x,
+
+    print(li)
+
+
+    return tabulate(li, headers=("User", "Name", "Groups"))
+
+
+print(print_user_table(names, groups))
