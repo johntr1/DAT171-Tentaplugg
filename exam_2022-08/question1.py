@@ -79,12 +79,10 @@ def print_user_table(names, groups):
         x = x.strip('[')
         x = x.strip(']')
         x = x.strip("'")
-        x = x.strip("'")
 
         li[i] += x,
 
     print(li)
-
 
     return tabulate(li, headers=("User", "Name", "Groups"))
 
