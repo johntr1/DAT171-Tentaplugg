@@ -49,3 +49,6 @@ def show_directory_info(path, dinfo):
             print(f'+-- {list(dinfo.keys())[list(dinfo.values()).index(i)]}: {format_bytes(i)}')
 
 show_directory_info(path, dinfo)
+
+# Kan använda list på .keys och .values för att använda .index
+# Kan använda :.2f för float
